@@ -1,0 +1,31 @@
+package com.sample
+ 
+rule "marital status" 
+dialect "mvel" 
+when $c : Customer(maritalStatus == "married") 
+then $c.discount += 3 
+end 
+
+rule "driving status" 
+dialect "mvel" 
+when $c : Customer(drivingStatus == "good") 
+then $c.discount += 7 
+end 
+
+rule "education" 
+dialect "mvel" 
+when $c : Customer(education == "MS" ) 
+then $c.discount += 1 
+end 
+
+rule "medium loyalty" 
+dialect "mvel" 
+when $c : Customer(accountAge >= 5 && accountAge <= 9) 
+then $c.discount += 2 
+end 
+
+rule "high loyalty" 
+dialect "mvel" 
+when $c : Customer(accountAge > 9) 
+then $c.discount += 3 
+end 

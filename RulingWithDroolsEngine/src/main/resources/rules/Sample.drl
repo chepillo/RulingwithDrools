@@ -1,31 +1,38 @@
 package com.sample
  
-rule "marital status" 
-dialect "mvel" 
-when $c : Customer(maritalStatus == "married") 
-then $c.discount += 3 
-end 
+import com.sample.Account;
+ 
+rule "Activate Conditions for averageBalance"
+activation-group "Activate Conditions"
+    when
+        account : Account(averageBalance >= 2000.0, activeConditions != true)
+    then
+        account.setActiveConditions(true);
+end
 
-rule "driving status" 
-dialect "mvel" 
-when $c : Customer(drivingStatus == "good") 
-then $c.discount += 7 
-end 
+rule "Activate Conditions for maxIncome"
+activation-group "Activate Conditions"
+    when
+        account : Account(maxIncome >= 600.0, activeConditions != true)
+    then
+        account.setActiveConditions(true);
+end
 
-rule "education" 
-dialect "mvel" 
-when $c : Customer(education == "MS" ) 
-then $c.discount += 1 
-end 
+rule "Activate Conditions for lendingBalance"
+activation-group "Activate Conditions"
+    when
+        account : Account(lendingBalance >= 25000.0, activeConditions != true)
+    then
 
-rule "medium loyalty" 
-dialect "mvel" 
-when $c : Customer(accountAge >= 5 && accountAge <= 9) 
-then $c.discount += 2 
-end 
+        account.setActiveConditions(true);
+end
 
-rule "high loyalty" 
-dialect "mvel" 
-when $c : Customer(accountAge > 9) 
-then $c.discount += 3 
-end 
+rule "Activate Conditions for investmentsBalance"
+activation-group "Activate Conditions"
+    when
+        account : Account(investmentBalance >= 10000.0, activeConditions != true)
+    then
+
+        account.setActiveConditions(true);
+end
+
